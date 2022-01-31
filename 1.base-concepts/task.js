@@ -15,8 +15,22 @@ function solveEquation(a, b, c) {
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
   let totalAmount;
+  if (percent < 0 || isNaN(percent) || percent === "") {
+    return `Параметр "Процентная ставка" содержит неправильное значение \"${percent}\"`;
+  } else if (contribution < 0 || isNaN(contribution) || contribution === "") {
+    return `Параметр "Начальный взнос" содержит неправильное значение \"${contribution}\"`;
+  } else if (amount < 0 || isNaN(amount) || amount === "") {
+    return `Параметр "Общая стоимость" содержит неправильное значение \"${amount}\"`;
+  } else if (new Date > date || date === ""|| isNaN(date)) {
+    return `Параметр date содержит неправильное значение ${date}`;
+  }
 
-  // код для задачи №2 писать здесь
-
-  return totalAmount;
+  let S;
+  let themoment;
+  let P = percent/(12*100);
+  let oneMonthImMsec = 31536000000/12;
+  let months = Math.round((date.getTime() - new Date().getTime())/oneMonthImMsec);
+  let monthFee = (amount - contribution) * (P + P/(((1 + P)** months)-1));
+   totalAmount = monthFee * months;
+    return Number(totalAmount.toFixed(2));
 }
