@@ -25,8 +25,6 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     return `Параметр date содержит неправильное значение ${date}`;
   }
 
-  let S;
-  let themoment;
   let P = percent/(12*100);
   let oneMonthImMsec = 31536000000/12;
   let months = Math.round((date.getTime() - new Date().getTime())/oneMonthImMsec);
