@@ -2,7 +2,6 @@
 function getArrayParams(arr) {
   let min = Infinity;
   let max = -Infinity;
-
   let sum = [];
   let avg;
   for (let i = 0; i < arr.length; i++) {
@@ -16,13 +15,11 @@ function getArrayParams(arr) {
   }
   avg = sum/arr.length;
   avg = +avg.toFixed(2);
-
-  // Ваш код
-
   return { min: min, max: max, avg: avg };
 }
 
 // Задание 2
+// part 1
 function worker(arr) {
   let sum = [];
   for (let i=0; i<arr.length; i++) {
@@ -41,5 +38,5 @@ function makeWork(arrOfArr, worker) {
 
 // Задание 3
 function worker2(arr) {
-  // Ваш код
+  return getArrayParams(arr).max - getArrayParams(arr).min;
 }
