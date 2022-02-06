@@ -2,10 +2,10 @@
 function getArrayParams(arr) {
   let min = Infinity;
   let max = -Infinity;
-  let sum = [];
+  let sum = 0;
   let avg;
   for (let i = 0; i < arr.length; i++) {
-    sum = Number(sum) + arr[i];
+    sum += arr[i];
     if (arr[i] > max) {
       max = arr[i];
     }
@@ -21,22 +21,28 @@ function getArrayParams(arr) {
 // Задание 2
 // part 1
 function worker(arr) {
-  let sum = [];
+  let sum = 0;
   for (let i=0; i<arr.length; i++) {
-    sum = Number(sum) + arr[i];
+    sum += arr[i];
   }
   return sum;
 }
 
-function makeWork(arrOfArr, worker) {
-  let max = [];
+function makeWork(arrOfArr, func) {
+  let max = 0;
+  let sum;
   for (let i=0; i<arrOfArr.length; i++) {
-  max.push(worker(arrOfArr[i]))
+    sum = func(arrOfArr[i]);
+  if (sum > max) {
+    max = sum;
   }
-  return Math.max.apply(null, max);
+  }
+  return max;
 }
 
 // Задание 3
 function worker2(arr) {
-  return getArrayParams(arr).max - getArrayParams(arr).min;
+  let max = getArrayParams(arr).max;
+  let min = getArrayParams(arr).min;
+  return max-min;
 }
