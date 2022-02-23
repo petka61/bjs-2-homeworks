@@ -1,5 +1,5 @@
 function parseCount(value) {
-  if (isNaN(value) == true ) {
+  if (isNaN(value)) {
     throw Error("Невалидное значение");
   } else {
     return Number.parseInt(value);
@@ -8,11 +8,10 @@ function parseCount(value) {
 
 function validateCount(value) {
   try {
-    parseCount(value)
+    return parseCount(value)
   } catch (value){
     return (value);
   }
-  return parseCount(value)
 }
 
 class Triangle {
@@ -24,13 +23,12 @@ class Triangle {
       throw Error("Треугольник с такими сторонами не существует");
     }
   }
-  getPerimeter(side1, side2, side3) {
+  getPerimeter() {
     return this.side1 + this.side2 + this.side3;
   }
   getArea() {
-    const halfPerimeter = 0.5 * (this.side1 + this.side2 + this.side3);
-    const Square = parseFloat(Math.sqrt(halfPerimeter*(halfPerimeter - this.side1) * (halfPerimeter - this.side2) * (halfPerimeter - this.side3)).toFixed(3))
-    return Square;
+    const halfPerimeter = 0.5 * this.getPerimeter();
+    return parseFloat(Math.sqrt(halfPerimeter*(halfPerimeter - this.side1) * (halfPerimeter - this.side2) * (halfPerimeter - this.side3)).toFixed(3));
   }
 }
 
@@ -47,5 +45,4 @@ let getTriangle = function(side1, side2, side3) {
       }
     }
   }
-  return new Triangle(side1, side2, side3);
 }
