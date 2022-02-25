@@ -97,6 +97,9 @@ class Student {
   }
 
   addMark(mark, subjectName) {
+    if (1 > mark > 5) {
+      throw Error("Невалидное значение");
+    }
     if (this.marks === undefined) {
       this.marks = [];
       this.marks.push(mark);
@@ -133,4 +136,5 @@ class Student {
       this.avg = this.sum/marks.length;
           return this.avg;
       }
+
 }
