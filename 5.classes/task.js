@@ -94,47 +94,43 @@ class Student {
     this.name = name;
     this.gender = gender;
     this.age = age;
+    this.subjects = {
+    };
+
   }
 
   addMark(mark, subjectName) {
-    if (1 > mark > 5) {
-      throw Error("Невалидное значение");
+    if (mark > 5 || mark < 1) {
+      throw new Error("Невалидное значение");
     }
-    if (this.marks === undefined) {
-      this.marks = [];
-      this.marks.push(mark);
+    if (!this.subjects.hasOwnProperty(subjectName)) {
+          this.subjects[subjectName] = [mark];
     } else {
-      this.marks.push(mark);
+      this.subjects[subjectName].push(mark)
     }
-    return this.marks;
   }
 
-  getAverage() {
-    this.totalMark = 0;
-    for (let i in this.marks) {
-      this.totalMark += this.marks[i];
+  getAverageBySubject(subjectName) {
+    let totalMark = 0;
+    for (let i in this.subjects[subjectName]) {
+      totalMark += this.subjects[subjectName][i];
             console.log(this.totalMark)
     }
-    return this.totalMark/this.marks.length;
+    return totalMark/this.subjects[subjectName].length;
   }
 
-  getAverageBySubject() {
-      let marks = this.marks;
-      this.min = Infinity;
-      this.max = -Infinity;
-      this.sum = 0;
-      this.avg;
-      for (let i = 0; i < marks.length; i++) {
-        this.sum += marks[i];
-        if (marks[i] > this.max) {
-          this.max = marks[i];
-        }
-        if (marks[i] < this.min) {
-          this.min = marks[i];
-        }
-      }
-      this.avg = this.sum/marks.length;
-          return this.avg;
-      }
+ getAverage( ) {
+    let total = [];
+    let sum = 0;
+    let average = 0;
+    for (let i in this.subjects) {
+      sum = (this.subjects[i].reduce((acc, number) => acc + number, 0))/this.subjects[i].length;
+      total.push(sum);
+           }
+           for( let i =0; i < total.length; i++) {
+             average += total[i];
+           }
+           return average/total.length;
+    }
 
 }
