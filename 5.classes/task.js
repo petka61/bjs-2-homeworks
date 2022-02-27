@@ -112,6 +112,9 @@ class Student {
 
   getAverageBySubject(subjectName) {
     let totalMark = 0;
+    if (this.subjects[subjectName] === undefined) {
+      throw new Error("Несуществующий предмет");
+    }
     for (let i in this.subjects[subjectName]) {
       totalMark += this.subjects[subjectName][i];
             console.log(this.totalMark)
